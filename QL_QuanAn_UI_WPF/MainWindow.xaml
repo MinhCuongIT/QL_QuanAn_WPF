@@ -1,0 +1,83 @@
+﻿<Window x:Class="QL_QuanAn_UI_WPF.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QL_QuanAn_UI_WPF"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Hệ thống quản lý địa điểm" Height="450" Width="800"
+        Loaded="Window_Loaded"
+        Background="#C8FDD3">
+
+    <Grid Name="my_grid">
+        <Grid.Background>
+            <ImageBrush ImageSource="background.png" Opacity="0.63"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto" ></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" HorizontalAlignment="Center">
+            <TextBlock FontWeight="Bold" Style="{StaticResource MaterialDesignHeadlineTextBlock}"> Chương trình quản lý quán ăn</TextBlock>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Name="txtName" Margin="10" Grid.Column="0" materialDesign:HintAssist.Hint="Tên quán ăn" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <TextBox Name="txtOwner" Margin="10" Grid.Column="1" materialDesign:HintAssist.Hint="Chủ sở hữu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <TextBox Name="txtAddress" Margin="10" Grid.Column="2" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <TextBox Name="txtPhone" Margin="10" Grid.Column="3" materialDesign:HintAssist.Hint="Số điện thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <Grid Margin="10" Grid.Column="4">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock>Hoạt động:</TextBlock>
+                    <ToggleButton Name="tbOpen" Margin="20, 0, 0, 0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Quán mở/đóng" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="3" >
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <Button Name="btnAdd" Margin="10" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="Thêm quán ăn" Click="BtnAdd_Click">
+                    Add
+                </Button>
+                <Button Name="btnDelete" Margin="10" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="Xóa quán ăn" Click="BtnDelete_Click">
+                    Delete
+                </Button>
+                <Button Name="btnUpdate" Margin="10" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="Cập nhật quán ăn" Click="BtnUpdate_Click">
+                    Update
+                </Button>
+                <Button Name="btnReset" Margin="10" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" ToolTip="Xóa trống các trường" Click="BtnReset_Click">
+                    Reset
+                </Button>
+                <materialDesign:TimePicker
+  materialDesign:HintAssist.Hint="With Seconds"
+  Is24Hours="{Binding IsChecked, ElementName=Is24HourCheckbox}"
+  x:Name="WithSecondsTimePicker"
+  WithSeconds="True"
+  Width="100" />
+            </WrapPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <DataGrid CurrentCellChanged="DgQuanAn_CurrentCellChanged" CanUserAddRows="False" CanUserDeleteRows="False" Margin="10" Name="dgQuanAn">
+                <DataGrid.RowBackground>
+                    <ImageBrush ImageSource="background.png" Opacity="0.1"/>
+                </DataGrid.RowBackground>
+                <DataGrid.AlternatingRowBackground>
+                    <ImageBrush ImageSource="background.png" Opacity="0.1"/>
+                </DataGrid.AlternatingRowBackground>
+                <DataGrid.Background>
+                    <ImageBrush ImageSource="background.png" Opacity="0.4"/>
+                </DataGrid.Background>
+
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
